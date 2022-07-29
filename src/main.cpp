@@ -3,6 +3,7 @@
 #include <stdio.h>
 #include <string>
 #include <iostream>
+#include <vector>
 
 #include "renderwindow.hpp"
 #include "entity.hpp"
@@ -26,14 +27,15 @@ int main(int argc, char* args[]){
 
         SDL_Texture* faceSprite = window.loadTexture("res/img/sprite.png");
 
-       Entity entities[3] = { Entity(0,0, faceSprite),
-                              Entity(120,120, faceSprite),
-                              Entity(240,240, faceSprite)
-       };
+        // Entity entities[3] = { Entity(0,0, faceSprite),
+        //                      Entity(120,120, faceSprite),
+        //                      Entity(240,240, faceSprite)
+        //};
 
-     
-     
-     
+        std::vector<Entity> entities = {Entity(0,0, faceSprite),
+                                       Entity(120,120, faceSprite),
+                                       Entity(240,240, faceSprite)
+        };
 
         bool gameRunning = true;
         SDL_Event event;
@@ -48,8 +50,8 @@ int main(int argc, char* args[]){
             }
             window.clear();
             
-              for (int i=0; i <= 2; i++ ){                
-                 window.render(entities[i]); 
+              for (Entity& face : entities){                
+                 window.render(face); 
              };
             window.display();
         }

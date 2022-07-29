@@ -1,1 +1,5 @@
 build/
+math.o
+renderwindow.o
+main.o
+entity.o
