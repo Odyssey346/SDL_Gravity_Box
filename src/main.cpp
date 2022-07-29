@@ -5,9 +5,13 @@
 #include <iostream>
 
 #include "renderwindow.hpp"
+#include "entity.hpp"
+
 
 const int SCREEN_WIDTH = 1280;
 const int SCREEN_HEIGHT = 720;
+
+
 
 int main(int argc, char* args[]){
         if (SDL_Init(SDL_INIT_VIDEO) > 0 )
@@ -17,11 +21,24 @@ int main(int argc, char* args[]){
         std::cout << "IMG_Init failed, but this is still a good progress! ERROR: " << SDL_GetError() << std::endl;
 
         RenderWindow window("GAME v1.0", SCREEN_WIDTH, SCREEN_HEIGHT);
+                
 
-        SDL_Texture* faceSprite = window.loadTexture("res/img/banner.png");
+
+        SDL_Texture* faceSprite = window.loadTexture("res/img/sprite.png");
+
+       Entity entities[3] = { Entity(0,0, faceSprite),
+                              Entity(120,120, faceSprite),
+                              Entity(240,240, faceSprite)
+       };
+
+     
+     
+     
 
         bool gameRunning = true;
         SDL_Event event;
+
+       
 
         while (gameRunning){
             while (SDL_PollEvent(&event)){
@@ -30,11 +47,12 @@ int main(int argc, char* args[]){
                 }
             }
             window.clear();
-            window.render(faceSprite);
+            
+              for (int i=0; i <= 2; i++ ){                
+                 window.render(entities[i]); 
+             };
             window.display();
-
         }
-
         window.cleanUp();
         SDL_Quit();
 
