@@ -1,5 +1,10 @@
 build/
-math.o
-renderwindow.o
-main.o
-entity.o
+bin/
+*.o
+
+
+
+
+output.txt
+error.txt
+.gitignore

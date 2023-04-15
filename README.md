@@ -8,7 +8,7 @@ Because i absolutely fucking hate myself and i have to make something like that 
 
 [Look here](https://lazyfoo.net/tutorials/SDL/01_hello_SDL/index.php)
 
-or run simply run this
+or simply run this
 
 ``` g++ -c src/*.cpp -std=c++14 -m64 -g -Wall -I inc && g++ *.o -o bin/debug/main -lSDL2main -lSDL2 -lSDL2_image && ./bin/debug/main ```
 
