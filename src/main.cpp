@@ -41,7 +41,7 @@ int main(int argc, char* args[]){
                 
 
 
-        SDL_Texture* faceSprite = window.loadTexture("res/img/sprite.png");
+        SDL_Texture* faceSprite = window.loadTexture("res/img/sprite_transparent.png");
 
         // Entity entities[3] = { Entity(0,0, faceSprite),
         //                      Entity(120,120, faceSprite),
@@ -57,12 +57,10 @@ int main(int argc, char* args[]){
  
         int XPos1 = 0;
         int YPos1 = 0;
-                                                                                          
-        std::vector<Entity> entities = {
-                                       Entity(Vector2f(XPos1,YPos1), faceSprite),
-                                       Entity(Vector2f(XPos1+120,YPos1+120), faceSprite),
-                                       Entity(Vector2f(XPos1+240,YPos1+240), faceSprite)
-        };
+        int XPos2 = 240;
+        int YPos2 = 240;
+        int XPos_mo = 0;
+        int YPos_mo = 0;
 
 
         while (gameRunning){
@@ -74,42 +72,81 @@ int main(int argc, char* args[]){
                 //User presses a key
                 else if( event.type == SDL_KEYDOWN ) {
                    switch (event.key.keysym.sym) {
-                        case SDLK_UP:
+                        case SDLK_z:
                         std::cout << "UP!" << std::endl;
-                        std::cout << YPos1 << " <-- YPos Before" << std::endl;
-                        YPos1 = YPos1 +10;
+                        std::cout << YPos2 << " <-- YPos Before" << std::endl;
+                        YPos2 = YPos2 -10;
                         std::cout << YPos1 << " <-- YPos After" << std::endl;
                         break;
 
-                        case SDLK_DOWN:
+                        case SDLK_s:
+                        std::cout << "DOWN!" << std::endl;
+                        std::cout << YPos2 << " <-- YPos Before" << std::endl;
+                        YPos2 = YPos2 +10;
+                        std::cout << YPos1 << " <-- YPos After" << std::endl;
+                        break;
+
+                        case SDLK_q:
+                        std::cout << "LEFT!" << std::endl;
+                        std::cout << YPos1 << " <-- YPos Before" << std::endl;
+                        XPos2 = XPos2 -10;
+                        std::cout << YPos2 << " <-- YPos After" << std::endl;
+                        break;
+                                                                               
+                        case SDLK_d:
+                        std::cout << "RIGHT!" << std::endl;
+                        std::cout << YPos2 << " <-- YPos Before" << std::endl;
+                        XPos2 = XPos2 +10;
+                        std::cout << YPos2 << " <-- YPos After" << std::endl;
+                        break;
+
+                        case SDLK_UP:
                         std::cout << "UP!" << std::endl;
                         std::cout << YPos1 << " <-- YPos Before" << std::endl;
                         YPos1 = YPos1 -10;
                         std::cout << YPos1 << " <-- YPos After" << std::endl;
                         break;
 
+                        case SDLK_DOWN:
+                        std::cout << "DOWN!" << std::endl;
+                        std::cout << YPos1 << " <-- YPos Before" << std::endl;
+                        YPos1 = YPos1 +10;
+                        std::cout << YPos1 << " <-- YPos After" << std::endl;
+                        break;
 
+                        case SDLK_LEFT:
+                        std::cout << "LEFT!" << std::endl;
+                        std::cout << YPos1 << " <-- YPos Before" << std::endl;
+                        XPos1 = XPos1 -10;
+                        std::cout << YPos1 << " <-- YPos After" << std::endl;
+                        break;
+                                                                               
+                        case SDLK_RIGHT:
+                        std::cout << "RIGHT!" << std::endl;
+                        std::cout << YPos1 << " <-- YPos Before" << std::endl;
+                        XPos1 = XPos1 +10;
+                        std::cout << YPos1 << " <-- YPos After" << std::endl;
+                        break;
                    } 
                 }
 
                 // Get the mouse position on the window.
-                else if (event.type == SDL_MOUSEMOTION) {
-                 int XPos_mo { event.motion.x };
-                 int YPos_mo { event.motion.y };
+                else if (event.type == SDL_MOUSEMOTION) {   
+                 XPos_mo = { event.motion.x };
+                 YPos_mo = { event.motion.y };
                  std::cout << "Position of mouse is " << XPos_mo << "," << YPos_mo << "." << std::endl;
-                 XPos_mo = XPos1;
-                 YPos_mo = YPos1;
                 }  
 
                 else if (DeltaTime != 0) {
                 std::cout << "FPS: " << DeltaTime << "." << std::endl;
-                std::cout << "TimeStart : " << CurrentTime << "." << std::endl;   
                 std::cout << "TimeEnd : " << LastTime << "." << std::endl;
                 }       
 
-
-
-
+                std::vector<Entity> entities = {
+                               Entity(Vector2f(XPos1,YPos1), faceSprite),
+                               Entity(Vector2f(XPos_mo,YPos_mo), faceSprite),
+                               Entity(Vector2f(XPos2,YPos2), faceSprite)
+                };
 
                 // Clear the render
                 window.clear();
